@@ -80,7 +80,7 @@ class Program
                 StringBuilder headerContent = new StringBuilder();
                 headerContent.AppendLine($"# Relatório de Atividades - {currentDate}");
                 headerContent.AppendLine($"**Quantidade de Itens Trabalhados:** {itemCount}");
-                headerContent.AppendLine($"**Tempo Total Gasto:** {totalTimeFormatted}");
+                headerContent.AppendLine($" / **Tempo Total Gasto:** {totalTimeFormatted}");
                 headerContent.AppendLine();
                 headerContent.AppendLine("---");
                 headerContent.AppendLine();
