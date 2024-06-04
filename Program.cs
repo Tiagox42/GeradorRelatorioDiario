@@ -35,6 +35,8 @@ class Program
                 Directory.CreateDirectory(logsDirectory);
             }
 
+            var caminhoMd = "";
+
             // Abrir o arquivo Excel
             using (var workbook = new XLWorkbook(excelFilePath))
             {
@@ -56,11 +58,20 @@ class Program
 
                     if (!string.IsNullOrWhiteSpace(itemName))
                     {
+                        Console.WriteLine($"Item: {itemName}, Tempo: {timeSpent}"); // Log para verificar os valores lidos
+
                         itemCount++;
 
-                        if (TimeSpan.TryParse(timeSpent, out TimeSpan time))
+                        // Converter a string de tempo para o formato "HH:mm:ss"
+                        if (DateTime.TryParseExact(timeSpent, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime timeAsDateTime))
                         {
+                            TimeSpan time = timeAsDateTime.TimeOfDay;
+                            Console.WriteLine($"Tempo convertido: {time}"); // Log para verificar o tempo convertido
                             totalTimeSpent += time;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Falha ao converter tempo: {timeSpent}"); // Log para indicar falha na conversão do tempo
                         }
 
                         markdownContent.AppendLine($"## {itemName}");
@@ -94,6 +105,8 @@ class Program
 
                 // Escrever o conteúdo no arquivo Markdown
                 File.WriteAllText(markdownFilePath, headerContent.ToString());
+
+                caminhoMd = markdownFilePath;
             }
 
             // Perguntar se o usuário quer fazer commit e push para o GitHub
@@ -104,6 +117,10 @@ class Program
             {
                 CommitAndPushToGitHub(baseDirectory);
             }
+
+            Console.WriteLine("Abrindo o arquivo Markdown no GitHub...");
+            OpenMarkdownFileOnGitHub(caminhoMd);
+            Console.WriteLine("Arquivo Markdown aberto no GitHub.");
         }
         catch (Exception ex)
         {
@@ -165,6 +182,29 @@ class Program
         {
             // Tratamento de erro
             Console.WriteLine($"Erro ao fazer commit e push para o GitHub: {ex.Message}");
+        }
+    }
+
+    static void OpenMarkdownFileOnGitHub(string filePath)
+    {
+        try
+        {
+            // URL base do repositório no GitHub
+            string baseGitHubUrl = "https://github.com/Tiagox42/GeradorRelatorioDiario/blob/main/";
+
+            // Constrói a URL completa para o arquivo Markdown
+            string gitHubUrl = baseGitHubUrl + "Relatorios/" + Path.GetFileName(filePath);
+
+            // Abre a URL no navegador padrão
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+            {
+                FileName = gitHubUrl,
+                UseShellExecute = true,
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao abrir o arquivo no GitHub: {ex.Message}");
         }
     }
 }
