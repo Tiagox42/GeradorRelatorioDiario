@@ -73,14 +73,18 @@ class Program
                     }
                 }
 
+                // Formatar o tempo total gasto
+                string totalTimeFormatted = $"{(int)totalTimeSpent.TotalHours:D2}:{totalTimeSpent.Minutes:D2}";
+
                 // Adicionando cabeçalho no início do arquivo markdown
                 StringBuilder headerContent = new StringBuilder();
                 headerContent.AppendLine($"# Relatório de Atividades - {currentDate}");
                 headerContent.AppendLine($"**Quantidade de Itens Trabalhados:** {itemCount}");
-                headerContent.AppendLine($"**Tempo Total Gasto:** {totalTimeSpent:hh\\:mm}");
+                headerContent.AppendLine($"**Tempo Total Gasto:** {totalTimeFormatted}");
                 headerContent.AppendLine();
                 headerContent.AppendLine("---");
                 headerContent.AppendLine();
+
 
                 headerContent.Append(markdownContent.ToString());
 
