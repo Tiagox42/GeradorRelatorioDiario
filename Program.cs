@@ -75,7 +75,7 @@ class Program
                         }
 
                         markdownContent.AppendLine($"## {itemName}");
-                        markdownContent.AppendLine($"**Tempo Gasto:** {timeSpent}");
+                        markdownContent.AppendLine($"**Data e tempo gasto:** {timeSpent}");
                         markdownContent.AppendLine();
                         markdownContent.AppendLine(itemDescription);
                         markdownContent.AppendLine();

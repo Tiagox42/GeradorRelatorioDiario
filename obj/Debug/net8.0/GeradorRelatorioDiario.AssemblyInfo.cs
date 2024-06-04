@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeradorRelatorioDiario")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2718e2328e9c4b802e9e5424edb817149509d228")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7a58becf6b769e9c1f173191a6a2d9321b07fcf")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeradorRelatorioDiario")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeradorRelatorioDiario")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
