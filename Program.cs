@@ -58,7 +58,7 @@ class Program
                     {
                         itemCount++;
 
-                        if (TimeSpan.TryParseExact(timeSpent, @"hh\:mm", CultureInfo.InvariantCulture, out TimeSpan time))
+                        if (TimeSpan.TryParse(timeSpent, out TimeSpan time))
                         {
                             totalTimeSpent += time;
                         }
@@ -80,7 +80,8 @@ class Program
                 StringBuilder headerContent = new StringBuilder();
                 headerContent.AppendLine($"# Relatório de Atividades - {currentDate}");
                 headerContent.AppendLine($"**Quantidade de Itens Trabalhados:** {itemCount}");
-                headerContent.AppendLine($" / **Tempo Total Gasto:** {totalTimeFormatted}");
+                headerContent.AppendLine();
+                headerContent.AppendLine($"**Tempo Total Gasto:** {totalTimeFormatted}");
                 headerContent.AppendLine();
                 headerContent.AppendLine("---");
                 headerContent.AppendLine();
